@@ -1,6 +1,11 @@
-import { wallet } from "../wallet";
-import { connect4Contract } from "../contract";
+import { wallet } from '../wallet';
+import { connect4Contract } from '../contract';
+import { BigNumber } from 'ethers';
 
 export async function getMyActiveGames(): Promise<number[]> {
-    throw new Error("implement me :)");
+	const games: BigNumber[] = await connect4Contract.getActiveGamesIds();
+
+	const mappedGames = games.map((game) => game.toNumber());
+
+	return mappedGames;
 }
